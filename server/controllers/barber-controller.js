@@ -23,7 +23,7 @@ module.exports = {
   async createBarber({ body }, res) {
     const barber = await Barber.create(body);
 
-    if (!user) {
+    if (!barber) {
       return res.status(400).json({ message: "Something is wrong!" });
     }
     const token = signToken(barber);
