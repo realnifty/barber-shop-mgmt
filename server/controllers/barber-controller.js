@@ -3,7 +3,6 @@ const { Barber } = require("../models");
 const { signToken } = require("../utils/auth");
 
 module.exports = {
-  // get a single user by either their id or their username
   async getSingleBarber({ barber = null, params }, res) {
     const foundBarber = await Barber.findOne({
       $or: [
@@ -20,7 +19,7 @@ module.exports = {
 
     res.json(foundBarber);
   },
-  // create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
+
   async createBarber({ body }, res) {
     const barber = await Barber.create(body);
 
@@ -30,8 +29,7 @@ module.exports = {
     const token = signToken(barber);
     res.json({ token, barber });
   },
-  // login a user, sign a token, and send it back (to client/src/components/LoginForm.js)
-  // {body} is destructured req.body
+
   async login({ body }, res) {
     const barber = await Barber.findOne({
       $or: [{ username: body.username }, { email: body.email }],
@@ -48,8 +46,7 @@ module.exports = {
     const token = signToken(barber);
     res.json({ token, barber });
   },
-  // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
-  // user comes from `req.user` created in the auth middleware function
+
   async saveClient({ barber, body }, res) {
     console.log(barber);
     try {
@@ -64,7 +61,7 @@ module.exports = {
       return res.status(400).json(err);
     }
   },
-  // remove a book from `savedBooks`
+
   async deleteClient({ barber, params }, res) {
     const updatedUser = await Barber.findOneAndUpdate(
       { _id: barber._id },
