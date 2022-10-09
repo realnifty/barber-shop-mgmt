@@ -6,7 +6,7 @@ const {
   saveClient,
   deleteClient,
   login,
-} = require("../../controllers/user-controller");
+} = require("../../controllers/barber-controller");
 
 // import middleware
 const { authMiddleware } = require("../../utils/auth");

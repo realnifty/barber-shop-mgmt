@@ -38,10 +38,10 @@ barberSchema.pre("save", async function (next) {
     next();
 });
 
-userSchema.virtual("clientCount").get(function () {
+barberSchema.virtual("clientCount").get(function () {
     return this.clients.length;
 });
 
 const Barber = model("Barber", barberSchema);
 
-modeul.exports = Barber;
+module.exports = Barber;
